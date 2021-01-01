@@ -29,7 +29,9 @@
 
   int four;
  */
-let four = 4;
+
+let four: int = 4;
+print_int(four);
 
 /*
   floatFour is a value with the type float. We write the signature like this:
@@ -46,7 +48,9 @@ let four = 4;
   Try inserting an incorrect signature for [floatFour] to see what error the
   compiler gives you.
  */
-let floatFour = 4.;
+
+let floatFour: float = 4.0;
+print_float(floatFour);
 
 /*
   Function signatures
@@ -68,11 +72,11 @@ let floatFour = 4.;
   value of the last statement in that function.
  */
 /* let intAverage = (x, y) => failwith("For you to implement"); */
-let intAverage = (x, y) => failwith("For you to implement");
+let intAverage = (x: int, y: int) => (x + y) / 2; // With type signatures
 
 /* let floatAverage : (float, float) => float */
 /* let floatAverage = (x, y) => failwith("For you to implement"); */
-let floatAverage = (x, y) => failwith("For you to implement");
+let floatAverage = (x: float, y: float) => (x +. y) /. 2.; // Float operation
 
 /*
   The following expression computes the average of 10 and 20:
@@ -95,6 +99,7 @@ let lastName: string = "Flintstone";
   and the compiler can infer that fullName is a string.
  */
 let fullName = firstName ++ " " ++ lastName;
+print_string(fullName);
 
 let aBooleanFalse: bool = false;
 
@@ -104,7 +109,8 @@ let aBooleanFalse: bool = false;
   || for logical or
   !  for logical not
  */
-let () = assert (true || aBooleanFalse);
+
+let () = assert(true || aBooleanFalse);
 
 /*
   The [unit] type

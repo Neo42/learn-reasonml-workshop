@@ -21,7 +21,12 @@ let rec length = lst =>
   };
 
 /* Write a function to add up the elements of a list by matching on it. */
-let rec sum = lst => failwith("For you to implement");
+let rec sum = lst =>
+  switch (lst) {
+  | [] => 0
+  | [hd, ...tl] => hd + sum(tl)
+  };
+sum([1, 2, 3, 4]);
 
 /*
   The signature for the append operator is
@@ -30,12 +35,14 @@ let rec sum = lst => failwith("For you to implement");
   It's an infix operator.
  */
 let listAppend = (first, second) => first @ second;
+listAppend([], [1, 2, 3, 4]);
 
 /*
   The way you put something on the head to the list uses the same kind of
   syntax for matching on lists. This is called the spread syntax.
  */
 let newHead = (hd, rest) => [hd, ...rest];
+newHead(0, [1, 2, 3, 4]);
 
 Test.runAll([
   (sum([]) == 0, "sum"),

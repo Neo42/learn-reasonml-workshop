@@ -3,17 +3,17 @@ let plus = (x, y) => x + y;
 let times = (x, y) => x * y;
 
 /* Sometimes, multiple functions look similar: */
-let rec addEveryNumberUpTo = x =>
-  switch (x) {
-  | 0 => 0
-  | _ => plus(x, addEveryNumberUpTo(x - 1))
-  };
+// let rec addEveryNumberUpTo = x =>
+//   switch (x) {
+//   | 0 => 0
+//   | _ => plus(x, addEveryNumberUpTo(x - 1))
+//   };
 
-let rec factorial = x =>
-  switch (x) {
-  | 0 => 1
-  | _ => times(x, factorial(x - 1))
-  };
+// let rec factorial = x =>
+//   switch (x) {
+//   | 0 => 1
+//   | _ => times(x, factorial(x - 1))
+//   };
 
 /*
   These functions have a lot in common:
@@ -71,12 +71,17 @@ let rec product = xs =>
 
  Let's write the common parts just once:
  */
-let rec every = (answer, combine, xs) => failwith("For you to implement");
+let rec every = (answer, combine, xs) => {
+  switch (xs) {
+  | [] => answer
+  | [x, ...rest] => combine(x, every(answer, combine, rest))
+  };
+};
 
 /* Now let's rewrite sum and product in just one line each using every */
-let simplerSum = xs => failwith("For you to implement");
+let simplerSum = xs => every(0, times, xs);
 
-let simplerProduct = xs => failwith("For you to implement");
+let simplerProduct = xs => every(0, plus, xs);
 
 Test.runAll([
   (simplerProduct([]) == 1, "simpler product"),
